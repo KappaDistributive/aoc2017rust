@@ -148,8 +148,21 @@ fn solve_part_1(input_str: &str) -> i32 {
     result
 }
 
+fn solve_part_2(input_str: &str) -> i32 {
+    let mut result: i32 = std::i32::MIN;
+    let mut rm: RegisterMachine = RegisterMachine::from_str(input_str);
+    for _ in 0..rm.instructions.len() {
+        rm.step();
+        for (_,v) in rm.register.iter() {
+        result = cmp::max(result, *v);
+        }
+    }
+    result
+}
+
 fn main() {
     println!("Answer part 1: {}", solve_part_1(INPUT));
+    println!("Answer part 2: {}", solve_part_2(INPUT));
     
 }
 
